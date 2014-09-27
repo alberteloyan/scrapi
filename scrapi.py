@@ -12,15 +12,16 @@ def add_api_name(text, file):
 
 def add_api_headers(text, file):
     file.write('**Required headers:** \n')
-    add_json(str(text), file)
+    add_json(text, file)
 
 #####################
 ### Util
 #####################
 
 def add_json(text, file):
+    formatted = pprint.pformat(text, width=1)
     file.write("```python \n")
-    file.write(text)
+    file.write(formatted)
     file.write("\n```")
     file.write('\n\n')
 
@@ -58,13 +59,11 @@ def add_method(text, file):
 
 def add_required_fields(text, file):
     out_file.write('**Required fields:** \n')
-    formatted = pprint.pformat(text, width=1)
-    add_json(formatted, file)
+    add_json(text, file)
 
 def add_required_args(text, file):
     out_file.write('**Required QS arguments:** \n')
-    formatted = pprint.pformat(text, width=1)
-    add_json(formatted, file)
+    add_json(text, file)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
