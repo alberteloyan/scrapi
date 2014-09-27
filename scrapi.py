@@ -1,4 +1,5 @@
 import json
+import argparse
 
 #####################
 ### Api level
@@ -58,10 +59,15 @@ def add_required_fields(text, file):
     add_json(text, file)
 
 if __name__ == "__main__":
-    raw = open('api_docs_1.json')
+    parser = argparse.ArgumentParser()
+    parser.add_argument('input_file')
+    parser.add_argument('output_file')
+    args = parser.parse_args()
+
+    raw = open(args.input_file)
 
     loaded = json.load(raw)
-    out_file = open('output.md', 'w')
+    out_file = open(args.output_file, 'w')
 
     #add api name
     add_api_name(loaded.get('api_name'), out_file)

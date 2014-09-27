@@ -1,5 +1,3 @@
-# Scrapi
-The simple API documentation generator.
+# Scrapi — Simple API documentation generator
 
-TODO - write doc
-
+TODO - describe

@@ -1,0 +1,19 @@
+###########
+# packages 
+###########
+
+#python ignores
+*.pyc
+*.egg-info/
+
+dist/
+
+#idea/pycharm IDE
+.idea/workspace.xml
+.idea
+*.idea
+.idea
+
+
+#other files
+.DS_Store
