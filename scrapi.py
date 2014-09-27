@@ -89,6 +89,9 @@ if __name__ == "__main__":
             add_url(action.get('url'), out_file)
             add_method(action.get('method'), out_file)
 
+            out_file.write('**Required QS arguments:** \n')
+            add_required_fields(str(action.get('req_args')), out_file)
+
             if action.get('method') == 'POST':
                 out_file.write('**Required fields:** \n')
                 add_required_fields(str(action.get('req_fields')), out_file)
