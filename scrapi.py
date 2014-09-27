@@ -1,5 +1,6 @@
 import json
 import argparse
+import pprint
 
 #####################
 ### Api level
@@ -18,7 +19,7 @@ def add_api_headers(text, file):
 #####################
 
 def add_json(text, file):
-    file.write("```json \n")
+    file.write("```python \n")
     file.write(text)
     file.write("\n```")
     file.write('\n\n')
@@ -56,7 +57,14 @@ def add_method(text, file):
     file.write('\n\n')
 
 def add_required_fields(text, file):
-    add_json(text, file)
+    out_file.write('**Required fields:** \n')
+    formatted = pprint.pformat(text, width=1)
+    add_json(formatted, file)
+
+def add_required_args(text, file):
+    out_file.write('**Required QS arguments:** \n')
+    formatted = pprint.pformat(text, width=1)
+    add_json(formatted, file)
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -89,12 +97,11 @@ if __name__ == "__main__":
             add_url(action.get('url'), out_file)
             add_method(action.get('method'), out_file)
 
-            out_file.write('**Required QS arguments:** \n')
-            add_required_fields(str(action.get('req_args')), out_file)
+            if action.get('req_args'):
+                add_required_args(str(action.get('req_args')), out_file)
 
             if action.get('method') == 'POST':
-                out_file.write('**Required fields:** \n')
-                add_required_fields(str(action.get('req_fields')), out_file)
+                add_required_fields(action.get('req_fields'), out_file)
 
             horizontal_line(out_file)
 
